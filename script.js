@@ -43,27 +43,55 @@ if (toggle && nav) {
   });
 }
 
-const contactForm = document.getElementById('contactForm');
-const whatsappNumber = '2349127643783';
-
-if (contactForm) {
-  contactForm.addEventListener('submit', event => {
+// Handle all Formspree forms
+document.querySelectorAll('form[action*="formspree.io"]').forEach(form => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const name = formData.get('name')?.toString().trim() || 'No name';
-    const email = formData.get('email')?.toString().trim() || 'No email';
-    const interest = formData.get('interest')?.toString().trim() || 'General inquiry';
-    const message = formData.get('message')?.toString().trim() || 'No message provided';
+    const statusEl = form.querySelector('.form-status');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
 
-    const whatsappMessage = `Hello OffShield Security,\n\nName: ${name}\nEmail: ${email}\nInterest: ${interest}\nMessage: ${message}`;
-    const encoded = encodeURIComponent(whatsappMessage);
-    const url = `https://wa.me/${whatsappNumber}?text=${encoded}`;
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    if (statusEl) {
+      statusEl.style.display = 'none';
+      statusEl.style.color = '';
+    }
 
-    window.open(url, '_blank');
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        if (statusEl) {
+          statusEl.textContent = '✓ Message sent successfully! We will get back to you soon.';
+          statusEl.style.color = '#0a7c2e';
+          statusEl.style.display = 'block';
+        } else {
+          alert('Message sent successfully! We will get back to you soon.');
+        }
+      } else {
+        throw new Error('Something went wrong');
+      }
+    } catch (error) {
+      if (statusEl) {
+        statusEl.textContent = '✗ Failed to send. Please try again or contact us on WhatsApp.';
+        statusEl.style.color = '#c0392b';
+        statusEl.style.display = 'block';
+      } else {
+        alert('Failed to send. Please try again or message us on WhatsApp.');
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
   });
-}
-
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
+});
