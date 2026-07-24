@@ -66,10 +66,45 @@
             <p>Students, young professionals, aspiring tech talent, and career switchers who are passionate about cybersecurity.</p>
           </div>
           <div class="card">
-            <h3>What is included?</h3>
-            <p>Scholarship support can cover part of the training cost and may include internship placement benefits.</p>
-            <a class="btn btn-primary" href="contact.html">Request Scholarship Information</a>
-          </div>
+  <h3>Apply for Scholarship</h3>
+  <p style="margin-bottom: 1.2rem;">Fill the form below. Our team reviews applications regularly.</p>
+  
+  <form id="scholarshipForm" class="contact-form" action="https://formspree.io/f/xbdnzerj" method="POST">
+    <label>
+      Full Name
+      <input type="text" name="name" placeholder="Your full name" required />
+    </label>
+    <label>
+      Email Address
+      <input type="email" name="email" placeholder="you@example.com" required />
+    </label>
+    <label>
+      Phone / Contact Number
+      <input type="tel" name="phone" placeholder="+234 800 000 0000" required />
+    </label>
+    <label>
+      Country
+      <input type="text" name="country" placeholder="e.g. Nigeria, Kenya, UK..." required />
+    </label>
+    <label>
+      Preferred Course (optional)
+      <select name="preferred_course">
+        <option value="">Select if you have a preference</option>
+        <option value="Cybersecurity Foundation">Cybersecurity Foundation & Networking</option>
+        <option value="Ethical Hacking">Ethical Hacking</option>
+        <option value="Cloud Security Engineering">Cloud Security Engineering</option>
+        <option value="Application Security">Application Security Engineering</option>
+        <option value="Web Penetration Testing">Web Penetration Testing</option>
+      </select>
+    </label>
+    <label>
+      Why are you applying? (Tell us about your situation)
+      <textarea name="message" rows="4" placeholder="Share your background and why you need the scholarship..." required></textarea>
+    </label>
+    <button class="btn btn-primary" type="submit">Submit Scholarship Application</button>
+    <p class="form-status" style="margin-top: 1rem; font-weight: 600; display: none;"></p>
+  </form>
+</div>
         </div>
       </section>
     </main>
