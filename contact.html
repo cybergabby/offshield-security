@@ -49,30 +49,44 @@
 
       <section class="section">
         <div class="container two-col">
-          <form id="contactForm" class="card contact-form" action="#">
-            <label>
-              Full Name
-              <input type="text" name="name" placeholder="Your name" required />
-            </label>
-            <label>
-              Email Address
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              Interest
-              <select name="interest" required>
-                <option value="Scholarship">Scholarship</option>
-                <option value="Course Enrollment">Course Enrollment</option>
-                <option value="Security Service">Security Service</option>
-                <option value="Internship">Internship</option>
-              </select>
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="5" placeholder="Tell us how we can help." required></textarea>
-            </label>
-            <button class="btn btn-primary" type="submit">Send Message</button>
-          </form>
+
+          <form id="contactForm" class="card contact-form" action="https://formspree.io/f/maqrpzwo" method="POST">
+  <label>
+    Full Name
+    <input type="text" name="name" placeholder="Your full name" required />
+  </label>
+  <label>
+    Email Address
+    <input type="email" name="email" placeholder="you@example.com" required />
+  </label>
+  <label>
+    Phone / Contact Number
+    <input type="tel" name="phone" placeholder="+234 800 000 0000" required />
+  </label>
+  <label>
+    Country
+    <input type="text" name="country" placeholder="e.g. Nigeria, Kenya, UK..." required />
+  </label>
+  <label>
+    Interest
+    <select name="interest" required>
+      <option value="">Select an option</option>
+      <option value="Book a Consultation">Book a Consultation</option>
+      <option value="Scholarship">Scholarship</option>
+      <option value="Course Enrollment">Course Enrollment</option>
+      <option value="Security Service">Security Service</option>
+      <option value="Internship">Internship</option>
+      <option value="Other">Other</option>
+    </select>
+  </label>
+  <label>
+    Message
+    <textarea name="message" rows="5" placeholder="Tell us how we can help." required></textarea>
+  </label>
+  <button class="btn btn-primary" type="submit">Send Message</button>
+  <p class="form-status" style="margin-top: 1rem; font-weight: 600; display: none;"></p>
+</form>
+          
           <div class="card">
             <h3>Reach Out</h3>
             <p><strong>WhatsApp:</strong> +234 912 764 3783</p>
